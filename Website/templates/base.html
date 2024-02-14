@@ -1,3 +1,4 @@
+<!-- base.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,9 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TripChoice</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/home.css" %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 <body>
-    {% block content %} {% endblock content %}
+    <header>
+        <h1 style="font-size: 30px; color: red;">TripChoice</h1>
+    </header>
+
+    <nav>
+        <!-- Ваш навігаційний код тут -->
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Menu
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="/about-site">Про сайт</a></li>
+            <li><a class="dropdown-item" href="/agents">Агенції та компанії</a></li>
+            <li><a class="dropdown-item" href="/collaboration-api">Співпраця та АРІ</a></li>
+        </ul>
+
+        <div id="search">
+            <input type="text" id="search-input" style="width: 100px;" placeholder="Search...">
+            <button type="submit" form="search-form">Search</button>
+            <form id="search-form" action="/search" method="post">
+                <!-- Ваші поля для пошуку, наприклад, тут -->
+            </form>
+        </div>
+
+        <div id="profile">
+            <button onclick="location.href='/login'">Profile</button>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock content %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
 </html>
