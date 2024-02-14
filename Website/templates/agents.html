@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="text-align: center; color: #2C3E50; font-size: 40px;">
+    <p>Компанії та агенції, які з нами співпрацюють:</p>
+    <ul>
+        {% for agent in agents_list %}
+            <li>
+                {% if agent.url %}
+                    <a href="{{ agent.url }}" target="_blank">{{ agent.title }}</a>
+                {% else %}
+                    {{ agent.title }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content %}

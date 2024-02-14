@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="text-align: center; color: #2C3E50; font-size: 40px;">
+    <p>Щоб співпрацювати з нами, ви повинні надати нам назву вашої агенції чи компанії, посилання на ваш вебсайт та номер телефону (необов'язково).</p>
+    <div style="margin-top: 20px;">
+        <form method="post">
+            {% csrf_token %}
+            <label for="agency_name">Назва агенції чи компанії:</label>
+            <input type="text" id="agency_name" name="agency_name" required>
+            <br>
+            <label for="agency_url">URL вебсайту (необов'язково):</label>
+            <input type="url" id="agency_url" name="agency_url">
+            <br>
+            <label for="phone_number">Номер телефону:</label>
+            <input type="tel" id="phone_number" name="phone_number">
+            <br>
+            <input type="submit" value="Відправити">
+        </form>
+    </div>
+</div>
+{% endblock content %}
