@@ -30,3 +30,12 @@ class Agents(models.Model):
 
     class Meta:
         db_table = 'agents'
+
+
+class AgencyRequests(models.Model):
+    title = models.TextField()
+    url = models.TextField()
+    phone_number = models.CharField(max_length=20, null=False, blank=True)
+
+    class Meta:
+        db_table = 'agency_requests'

@@ -11,7 +11,12 @@
 </head>
 <body>
     <header>
-        <h1 style="font-size: 30px; color: red;">TripChoice</h1>
+        {% if request.path != '/' %}
+        <a href="/" style="text-decoration: none; color: red;"> <h1>TripChoice</h1>
+        </a>
+    {% else %}
+        <h1 style="color: red;">TripChoice</h1>
+    {% endif %}
     </header>
 
     <nav>

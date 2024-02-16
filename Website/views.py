@@ -26,15 +26,15 @@ def collaboration_api(request):
         agency_url = request.POST.get('agency_url')
         phone_number = request.POST.get('phone_number')
 
-        Agents.objects.create(title=agency_name, url=agency_url, phone_number=phone_number)
+        AgencyRequests.objects.create(title=agency_name, url=agency_url, phone_number=phone_number)
 
-        return redirect('success_page')
+        return redirect("success/")
 
     return render(request, "collaboration_api.html")
 
 
 def success_page(request):
-    return render(request, "succes_page.html")
+    return render(request, "success_page.html")
 
 
 def authView(request):
