@@ -5,7 +5,6 @@ from .models import *
 
 
 # Create your views here.
-@login_required
 def home(request):
     return render(request, "home.html", {})
 
@@ -45,3 +44,8 @@ def authView(request):
     else:
         form = UserCreationForm()
     return render(request, "registration/signup.html", {"form": form})
+
+
+@login_required
+def profile(request):
+    return render(request, "registration/profile.html")

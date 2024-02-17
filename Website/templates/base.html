@@ -39,7 +39,18 @@
         </div>
 
         <div id="profile">
-            <button onclick="location.href='/login'">Profile</button>
+            {% if user.is_authenticated %}
+                <!-- Якщо користувач ввійшов, відображення кнопки "Logout" -->
+                <button onclick="location.href='/accounts/logout'">Logout</button>
+                <button onclick="location.href={% url "Website:profile" %}">Profile</button>
+            {% else %}
+                {% if request.path != '/accounts/login/' %}
+                <!-- Якщо користувач не ввійшов, відображення кнопки "Sign In" -->
+                <button onclick="location.href='/accounts/login'">Sign In</button>
+                {% else %}
+                <button onclick="location.href={% url "Website:authView" %}">Sign up</button>
+                {% endif %}
+            {% endif %}
         </div>
     </nav>
 
