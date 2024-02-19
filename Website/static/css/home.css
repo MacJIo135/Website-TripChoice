@@ -19,7 +19,7 @@ nav {
     padding: 10px;
 }
 
-#menu {
+nav #menu {
     display: none;
     position: absolute;
     top: 40px;
@@ -29,7 +29,7 @@ nav {
     border: 1px solid #ccc;
 }
 
-#search {
+nav #search {
     display: flex;
     align-items: center;
     justify-content: center;
