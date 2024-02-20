@@ -25,9 +25,9 @@
             Menu
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="/about-site">Про сайт</a></li>
-            <li><a class="dropdown-item" href="/agents">Агенції та компанії</a></li>
-            <li><a class="dropdown-item" href="/collaboration-api">Співпраця та АРІ</a></li>
+            <li><a class="dropdown-item" href="{% url "Website:about_site" %}">Про сайт</a></li>
+            <li><a class="dropdown-item" href="{% url "Website:agencies" %}">Агенції та компанії</a></li>
+            <li><a class="dropdown-item" href="{% url "Website:collaboration_api" %}">Співпраця та АРІ</a></li>
         </ul>
 
         <div id="search">

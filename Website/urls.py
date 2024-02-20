@@ -8,7 +8,7 @@ urlpatterns = [
     path("profile/", profile, name="profile"),
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
     path("about-site/", about_site, name="about_site"),
-    path("agents/", agents, name="agents"),
+    path("agencies/", agencies, name="agencies"),
     path("collaboration-api/", collaboration_api, name="collaboration_api"),
     path("collaboration-api/success/", success_page, name="success_page"),
     path("accounts/", include("django.contrib.auth.urls"))

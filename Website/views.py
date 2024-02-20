@@ -13,7 +13,7 @@ def about_site(request):
     return render(request, "about_site.html")
 
 
-def agents(request):
+def agencies(request):
     agents_list = Agents.objects.all()
 
     return render(request, "agents.html", {'agents_list': agents_list})
