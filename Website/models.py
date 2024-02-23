@@ -39,3 +39,11 @@ class AgencyRequests(models.Model):
 
     class Meta:
         db_table = 'agency_requests'
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    avatar = models.ImageField(upload_to='avatars/', default='avatars/default_avatar.png')
+
+    def __str__(self):
+        return self.user.username

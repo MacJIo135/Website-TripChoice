@@ -1,6 +1,30 @@
 {% extends "base.html" %}
+
 {% block content %}
-<div style="text-align: center; color: #2C3E50; font-size: 40px;">
-    <p>Profile</p>
-</div>
-{% endblock content %}
+    {% load static %}
+
+    <div style="text-align: center;">
+        <label for="avatar-input">
+            <img src="{% if user.profile.avatar %}{{ user.profile.avatar.url }}{% else %}{% static 'images/avatar.png' %}{% endif %}" alt="Avatar" width="500" height="400" style="display: block; margin: 0 auto;">
+            <p style="font-size: 40px; font-weight: bold;">{{ user.username }}</p>
+        </label>
+        <input type="file" id="avatar-input" accept="image/*" style="display: none;">
+    </div>
+
+    <script>
+        document.getElementById('avatar-input').addEventListener('change', function () {
+            var input = this;
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    // Оновлюємо зображення при завантаженні нового файлу
+                    document.querySelector('img').src = e.target.result;
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        });
+    </script>
+{% endblock %}
