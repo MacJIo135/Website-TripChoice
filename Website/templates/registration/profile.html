@@ -3,13 +3,18 @@
 {% block content %}
     {% load static %}
 
+    <form method="POST" enctype="multipart/form-data" action="{% url 'Website:profile' %}" id="avatar-form">
+
+        {% csrf_token %}
+
     <div style="text-align: center;">
         <label for="avatar-input">
-            <img src="{% if user.profile.avatar %}{{ user.profile.avatar.url }}{% else %}{% static 'images/avatar.png' %}{% endif %}" alt="Avatar" width="500" height="400" style="display: block; margin: 0 auto;">
-            <p style="font-size: 40px; font-weight: bold;">{{ user.username }}</p>
+            <img id="avatar-image" src="{% if user_profile.avatar %}{{ user_profile.avatar.url }}{% else %}{% static 'images/avatar.png' %}{% endif %}" alt="Avatar" width="500" height="400" style="display: block; margin: 0 auto;">
+            <p style="font-size: 40px; font-weight: bold;">{{ request.user.username }}</p>
         </label>
-        <input type="file" id="avatar-input" accept="image/*" style="display: none;">
+        <input type="file" name="avatar" id="avatar-input" accept="avatars/*" style="display: none;">
     </div>
+    </form>
 
     <script>
         document.getElementById('avatar-input').addEventListener('change', function () {
@@ -19,8 +24,19 @@
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    // Оновлюємо зображення при завантаженні нового файлу
-                    document.querySelector('img').src = e.target.result;
+                    document.querySelector('#avatar-image').src = e.target.result;
+
+                    // Send the image to the server using AJAX
+                    var formData = new FormData(document.getElementById('avatar-form'));
+                    formData.append('avatar', input.files[0]);
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '{% url 'Website:profile' %}', true);
+                    xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+                    xhr.onload = function () {
+                        // Handle the response if needed
+                    };
+                    xhr.send(formData);
                 };
 
                 reader.readAsDataURL(input.files[0]);
